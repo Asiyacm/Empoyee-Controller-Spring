@@ -39,4 +39,12 @@ public class EmployeeController {
 
     }
 
+    @GetMapping("/delete")
+
+    public String Empdelete(){
+
+        return("Delete Employee");
+
+    }
+
 }
