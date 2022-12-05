@@ -14,4 +14,12 @@ public class EmployeeController {
         return("Welcome Employee");
 
     }
+
+    @GetMapping("/add")
+
+    public String Empadd(){
+
+        return("Add Employee");
+
+    }
 }
