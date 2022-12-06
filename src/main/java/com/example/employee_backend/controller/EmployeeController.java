@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 
 public class EmployeeController {
@@ -17,17 +19,23 @@ public class EmployeeController {
 
     @GetMapping("/")
 
-    public String Homepage(){
+    public String Homepage() {
 
-        return("Welcome Employee");
+        return ("Welcome Employee");
 
     }
 
-    @PostMapping(path= "/add",consumes = "application/json",produces = "application/json")
-    public String AddEmployee(@RequestBody Employees e){
+    @PostMapping(path = "/add", consumes = "application/json", produces = "application/json")
+    public String AddEmployee(@RequestBody Employees e) {
         System.out.println(e.getName().toString());
         dao.save(e);
-        return"Employee Added Sucessfully";
+        return "Employee Added Sucessfully";
+    }
+
+    @GetMapping("/view")
+    public List<Employees> viewEmployees() {
+        return (List<Employees>)dao.findAll();
+
     }
 
 }
