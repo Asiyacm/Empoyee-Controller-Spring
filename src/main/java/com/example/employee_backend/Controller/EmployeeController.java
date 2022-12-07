@@ -5,13 +5,16 @@ import com.example.employee_backend.dao.EmployeeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class EmployeeController {
 
     @Autowired
     private EmployeeDao dao;
+    @CrossOrigin(origins = "*")
     @GetMapping("/")
     public String Homepage(){
         return"Welcome to employee home page";
@@ -19,12 +22,13 @@ public class EmployeeController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "/add",consumes = "application/json",produces = "application/json")
-    public String Addemployee(@RequestBody Employee e)
+    public Map<String,String> Addemployee(@RequestBody Employee e)
     {
         System.out.println(e.getEmpname().toString());
         dao.save(e);
-        return"Welcome to employee add page";
-
+        HashMap<String, String> map = new HashMap<>();
+        map.put("status", "success");
+        return map;
     }
 
     @CrossOrigin(origins = "*")
